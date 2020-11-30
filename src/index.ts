@@ -3,6 +3,7 @@ import Log from './Log/Log'
 import TemplateString from './TemplateString/TemplateString'
 import JsonStriginifer from './Stringifier/Striginifer'
 import { ILogger } from './Logger/types'
+import TaggedLogger from './TaggedLogger/TaggedLogger'
 
 interface MyNamespacedWindow extends Window {
   logger: ILogger
@@ -10,8 +11,9 @@ interface MyNamespacedWindow extends Window {
 
 declare let window: MyNamespacedWindow
 
-const logger = new Logger(new Log('/message'), new TemplateString(new JsonStriginifer()))
-window.logger = logger
+const logger = new Logger(new Log('/message'))
+const taggedLogger = new TaggedLogger(new TemplateString(new JsonStriginifer()), logger)
+window.logger = taggedLogger
 
 /** 
  * @example 
@@ -22,7 +24,8 @@ const a = {
   },
 }
 
-logger.taggedDebug`debug message ${a}`
+taggedLogger.log`debug message ${a}`
+taggedLogger.log`tagged simple debug`
 // End example
 
 // export default logger

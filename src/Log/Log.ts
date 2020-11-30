@@ -12,7 +12,7 @@ class Log implements ILog {
   constructor(urlEndpoint: string, reqOptions?: RequestInit){
     if (navigator.sendBeacon) {
       this.sendMsg = (m: string, ...optionalParams: any[]) => {
-        const data = new Blob([m], {type: 'text/plain'})
+        const data = new Blob([m], {type: 'text/html'})
         navigator.sendBeacon(urlEndpoint, data)
       }
       return

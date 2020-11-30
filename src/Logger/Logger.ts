@@ -1,5 +1,4 @@
 import { ILog } from '@/Log/types'
-import { ITemplateString } from '@/TemplateString/types'
 import { ILogger } from './types'
 
 // TODO: Think to split this logger into the 2 varaints and extends BaseLogger to sendMessage,
@@ -11,28 +10,15 @@ import { ILogger } from './types'
  * tagged: uses tagged template and reduce the ease of use for the dev.
  * untagged: The dev is responsible of how to pass a correct string into the function.
  * 
- * @example tagged: logger.taggedDebug`My message is ${{type: "human", name: "Plony", lastName: "Almony"}}`;
+ * @example tagged: logger.debug`My message is ${{type: "human", name: "Plony", lastName: "Almony"}}`;
  * @example untagged: logger.debug(`Helo world`);
  *
  * @class Logger
  * @implements {ILogger}
  */
 class Logger implements ILogger {
-  constructor(private logSender: ILog, private tpl: ITemplateString) {
+  constructor(private logSender: ILog) {
     this.logSender = logSender
-    this.tpl = tpl
-  }
-
-  /**
-   *
-   * 
-   * @param {*} message
-   * @return {*} 
-   * @memberof Logger
-   */
-  createStringAndSend(message: any){
-    const result = this.tpl.toString`${message}`
-    return result
   }
 
   /**
@@ -43,53 +29,9 @@ class Logger implements ILogger {
    * @param {...any[]} optionalParams
    * @memberof Logger
    */
-  sendLog(message: any, cb: (message?: any, ...optionalParams: any[]) => void, ...optionalParams: any[]) {
+  private sendLog(message: any, cb: (message?: any, ...optionalParams: any[]) => void, ...optionalParams: any[]) {
     this.logSender.send(message, ...optionalParams)
     cb(message, ...optionalParams)
-  }
-
-  /**
-   *
-   * logger.debug(`Helo world`);
-   * @param {*} [message]
-   * @param {...any[]} optionalParams
-   * @memberof Logger
-   */
-  debug(message?: any, ...optionalParams: any[]) {
-    this.sendLog(message, console.debug, ...optionalParams)
-  }
-
-  /**
-   *
-   * logger.info(`Helo world`);
-   * @param {*} [message]
-   * @param {...any[]} optionalParams
-   * @memberof Logger
-   */
-  info(message?: any, ...optionalParams: any[]){
-    this.sendLog(message, console.info, ...optionalParams)
-  }
-
-  /**
-   *
-   * logger.error(`Helo world`);
-   * @param {*} [message]
-   * @param {...any[]} optionalParams
-   * @memberof Logger
-   */
-  error(message?: any, ...optionalParams: any[]){
-    this.sendLog(message, console.error, ...optionalParams)
-  }
-
-  /**
-   *
-   * logger.log(`Helo world`);
-   * @param {*} [message]
-   * @param {...any[]} optionalParams
-   * @memberof Logger
-   */
-  log(message?: any, ...optionalParams: any[]){
-    this.sendLog(message, console.log, ...optionalParams)
   }
   
   /**
@@ -99,9 +41,8 @@ class Logger implements ILogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  taggedDebug(strings: TemplateStringsArray, ...values: any[]) {
-    const message = this.tpl.toString(strings, ...values)
-    this.sendLog(message, console.debug)
+  debug(message: string, ...optionalParams: any[]) {  
+    this.sendLog(message, console.debug, ...optionalParams)
   }
 
   /**
@@ -111,9 +52,8 @@ class Logger implements ILogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  taggedInfo(strings: TemplateStringsArray, ...values: any[]){
-    const message = this.tpl.toString(strings, ...values)
-    this.sendLog(message, console.info)
+  info(message: string, ...optionalParams: any[]){
+    this.sendLog(message, console.info, ...optionalParams)
   }
 
   /**
@@ -123,9 +63,8 @@ class Logger implements ILogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  taggedError(strings: TemplateStringsArray, ...values: any[]){
-    const message = this.tpl.toString(strings, ...values)
-    this.sendLog(message, console.error)
+  error(message: string, ...optionalParams: any[]){
+    this.sendLog(message, console.error, ...optionalParams)
   }
 
   /**
@@ -135,10 +74,10 @@ class Logger implements ILogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  taggedLog(strings: TemplateStringsArray, ...values: any[]){
-    const message = this.tpl.toString(strings, ...values)
-    this.sendLog(message, console.log)
+  log(message: string, ...optionalParams: any[]){
+    this.sendLog(message, console.log, ...optionalParams)
   }
 }
 
 export default Logger
+
