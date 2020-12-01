@@ -1,3 +1,5 @@
+import { ITaggedLogger } from './TaggedLogger/types'
+import { ISendMessageOptions } from './SendMessageOptions/types'
 import Logger from './Logger/Logger'
 import TemplateString from './TemplateString/TemplateString'
 import JsonStriginifer from './Stringifier/Striginifer'
@@ -11,23 +13,31 @@ interface MyNamespacedWindow extends Window {
 
 declare let window: MyNamespacedWindow
 
-const logSender = SendMessageFactory.create()
-
-const logger = new Logger(logSender)
-const taggedLogger = new TaggedLogger(new TemplateString(new JsonStriginifer()), logger)
-window.logger = taggedLogger
-
 /** 
  * @example 
 */
-const a = {
-  app: {
-    name: 'my',
-  },
+// const a = {
+//   app: {
+//     name: 'my',
+//   },
+// }
+
+let taggedLogger: ITaggedLogger
+
+export default (opts?: ISendMessageOptions): ITaggedLogger  => {
+  // singleton
+  if (taggedLogger) {
+    return taggedLogger
+  }
+
+  const logSender = SendMessageFactory.create(opts)
+
+  const logger = new Logger(logSender)
+  taggedLogger = new TaggedLogger(new TemplateString(new JsonStriginifer()), logger)
+  window.logger = taggedLogger
+
+  // taggedLogger.log`debug message ${a}`
+  // taggedLogger.log`tagged simple debug`
+
+  return taggedLogger
 }
-
-taggedLogger.log`debug message ${a}`
-taggedLogger.log`tagged simple debug`
-// End example
-
-// export default logger
