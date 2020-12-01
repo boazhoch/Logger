@@ -13,15 +13,6 @@ interface MyNamespacedWindow extends Window {
 
 declare let window: MyNamespacedWindow
 
-/** 
- * @example 
-*/
-// const a = {
-//   app: {
-//     name: 'my',
-//   },
-// }
-
 let taggedLogger: ITaggedLogger
 
 export default (opts?: ISendMessageOptions): ITaggedLogger  => {
@@ -35,9 +26,6 @@ export default (opts?: ISendMessageOptions): ITaggedLogger  => {
   const logger = new Logger(logSender)
   taggedLogger = new TaggedLogger(new TemplateString(new JsonStriginifer()), logger)
   window.logger = taggedLogger
-
-  // taggedLogger.log`debug message ${a}`
-  // taggedLogger.log`tagged simple debug`
 
   return taggedLogger
 }
