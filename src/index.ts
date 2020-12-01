@@ -1,9 +1,9 @@
 import Logger from './Logger/Logger'
-import Log from './Log/Log'
 import TemplateString from './TemplateString/TemplateString'
 import JsonStriginifer from './Stringifier/Striginifer'
 import { ILogger } from './Logger/types'
 import TaggedLogger from './TaggedLogger/TaggedLogger'
+import SendMessageFactory from './SendMessageFactory/SendMessageFactory'
 
 interface MyNamespacedWindow extends Window {
   logger: ILogger
@@ -11,7 +11,9 @@ interface MyNamespacedWindow extends Window {
 
 declare let window: MyNamespacedWindow
 
-const logger = new Logger(new Log('/message'))
+const logSender = SendMessageFactory.create()
+
+const logger = new Logger(logSender)
 const taggedLogger = new TaggedLogger(new TemplateString(new JsonStriginifer()), logger)
 window.logger = taggedLogger
 

@@ -48,7 +48,7 @@ export default [
       terser(),
       dev({dirs: ['dist'], port: 8000, extend(app, modules) { 
         app.use(koaBody({ multipart: true }))
-        app.use(modules.router.post('/message', (ctx, next) => {
+        app.use(modules.router.post('/logs', (ctx, next) => {
           console.log(ctx.request.body)
           ctx.body = {ok: true}
         }))}, 
