@@ -8,4 +8,13 @@
 <h1>Example</h1>
 <button onclick="window.logger.log`hello`">Hello world</button>
 <button onclick="window.logger.log`hello ${{name:'Yoni'}}`">Hello Yoni</button>
+<script type="module">
+  import c from './index.esm.js';
+
+  logger = c();
+
+  logger.debug`Hey im your logger 👾 🤖`
+
+  logger.error`Hey! watch out!`
+</script>
 </body>

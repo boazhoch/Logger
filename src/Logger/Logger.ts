@@ -1,4 +1,4 @@
-import { ILog } from '@/Log/types'
+import { ISendMessage } from '@/SendMessage/types'
 import { ILogger } from './types'
 
 // TODO: Think to split this logger into the 2 varaints and extends BaseLogger to sendMessage,
@@ -17,7 +17,7 @@ import { ILogger } from './types'
  * @implements {ILogger}
  */
 class Logger implements ILogger {
-  constructor(private logSender: ILog) {
+  constructor(private logSender: ISendMessage) {
     this.logSender = logSender
   }
 
@@ -30,7 +30,7 @@ class Logger implements ILogger {
    * @memberof Logger
    */
   private sendLog(message: any, cb: (message?: any, ...optionalParams: any[]) => void, ...optionalParams: any[]) {
-    this.logSender.send(message, ...optionalParams)
+    this.logSender.send(message)
     cb(message, ...optionalParams)
   }
   
