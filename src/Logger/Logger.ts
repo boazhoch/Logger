@@ -34,8 +34,8 @@ class Logger extends ContextLogger implements ILogger {
    * @memberof Logger
    */
   private sendLog(message: string, cb: (message?: any) => void) {
-    this.logSender && this.logSender.send(message)
     cb(message)
+    this.logSender && this.logSender.send(message)
   }
 
   private invokeLog(level: LogLevel, message: string) {
