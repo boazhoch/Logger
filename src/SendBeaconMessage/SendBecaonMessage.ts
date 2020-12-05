@@ -10,7 +10,7 @@ class SendBeaconMessage extends SendMessage implements ISendMessage {
   }
 
   send(message: string) {
-    const data = new Blob([message], {type: this.opts.headers.contentType})
+    const data = new Blob([this.wrapLog(message)], {type: this.opts.headers.contentType})
     navigator.sendBeacon(this.opts.urlEndpoint, data)
   }
 }
