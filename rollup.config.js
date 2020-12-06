@@ -9,9 +9,27 @@ import livereload from 'rollup-plugin-livereload'
 import dev from 'rollup-plugin-dev'
 import koaBody from 'koa-body'
 import htmlTemplate from 'rollup-plugin-generate-html-template'
+import process from 'process'
 
+const isDev = process.env.BUILD === 'development'
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx']
+
+const devPlugins = () => isDev ? 
+  [
+    htmlTemplate({
+      template: 'index.html',
+      target: 'index.html',
+    }),
+    dev({dirs: ['dist'], port: 8000, extend(app, modules) { 
+      app.use(koaBody({ multipart: true }))
+      app.use(modules.router.post('/log', (ctx, next) => {
+        console.log(ctx.request.body)
+        ctx.body = {ok: true}
+      }))}, 
+    }),
+    livereload(),
+  ] : []
 
 export default [
   {
@@ -22,23 +40,18 @@ export default [
     ],
     output: [
       {
-        sourcemap: true,
+        sourcemap: isDev,
         file: pkg.main,
         format: 'cjs',
       },
       {
-        sourcemap: true,
+        sourcemap: isDev,
         file: pkg.module,
         format: 'esm',
       },
     ],
     plugins: [
-      htmlTemplate({
-        template: 'index.html',
-        target: 'index.html',
-      }),
       ts(),
-      json(),
       resolve({ extensions }),
       commonjs(),
       babel({
@@ -46,50 +59,7 @@ export default [
         include: ['src/**/*'],
       }),
       terser(),
-      dev({dirs: ['dist'], port: 8000, extend(app, modules) { 
-        app.use(koaBody({ multipart: true }))
-        app.use(modules.router.post('/logs', (ctx, next) => {
-          console.log(ctx.request.body)
-          ctx.body = {ok: true}
-        }))}, 
-      }),
-      livereload(),
+      ...devPlugins(),
     ],
-    // {
-  //   input: 'src/index.ts',
-  //   output: [
-  //     {
-  //       sourcemap: true,
-  //       name: 'boilerplate',
-  //       file: pkg.browser,
-  //       format: 'umd',
-  //     },
-  //   ],
-  //   plugins: [
-  //     ts(),
-  //     json(),
-  //     resolve({ extensions }),
-  //     commonjs(),
-  //     babel({
-  //       extensions,
-  //       include: ['src/**/*'],
-  //     }),
-  //     terser(),
-  //   ],
-  // },
-  // {
-  //   input: 'src/logger/index.ts',
-  //   plugins: [
-  //     ts(),
-  //     json(),
-  //     resolve({ extensions }),
-  //     commonjs(),
-  //     babel({
-  //       extensions,
-  //       include: ['src/**/*'],
-  //     }),
-  //     terser(),
-  //   ],
-  // },
   },
 ]

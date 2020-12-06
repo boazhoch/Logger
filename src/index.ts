@@ -35,6 +35,7 @@ export default (
   
   // singleton
   if (taggedLogger) {
+    taggedLogger.info`returning same instance of logger`
     return taggedLogger
   }
 
