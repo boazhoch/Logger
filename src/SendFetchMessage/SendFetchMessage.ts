@@ -9,7 +9,7 @@ class SendFetchMessage extends SendMessage implements ISendMessage {
     super(opts)
   }
 
-  send(m: string, ...optionalParams: any[]){
+  send(m: string){
     return fetch(this.opts.urlEndpoint, { 
       method: 'POST', 
       credentials: 'include', 
@@ -18,7 +18,7 @@ class SendFetchMessage extends SendMessage implements ISendMessage {
       headers: {
         'Content-Type': this.opts.headers.contentType,
       },
-      body: JSON.stringify({message: m}),
+      body: this.wrapLog(m),
       ...this.fetchRequestOptions,
     })
   }

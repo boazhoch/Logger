@@ -1,8 +1,11 @@
 import { ISendMessage } from '@/SendMessage/types'
 import { ILogger } from './types'
+import ContextLogger from '@/ContextLogger/ContextLogger'
+import { LogLevel } from '@/ContextLogger/types'
 
 // TODO: Think to split this logger into the 2 varaints and extends BaseLogger to sendMessage,
 // BaseLogger, ConsoleLogger exnteds BaseLogger implemnts ILogger and TaggedLogger exnteds BaseLogger implements ILogger
+
 
 /**
  * 
@@ -16,9 +19,10 @@ import { ILogger } from './types'
  * @class Logger
  * @implements {ILogger}
  */
-class Logger implements ILogger {
-  constructor(private logSender: ISendMessage) {
-    this.logSender = logSender
+class Logger extends ContextLogger implements ILogger {
+  
+  constructor(logSender?: ISendMessage,logLevel?: LogLevel) {
+    super(logSender, logLevel)
   }
 
   /**
@@ -29,9 +33,15 @@ class Logger implements ILogger {
    * @param {...any[]} optionalParams
    * @memberof Logger
    */
-  private sendLog(message: any, cb: (message?: any, ...optionalParams: any[]) => void, ...optionalParams: any[]) {
-    this.logSender.send(message)
-    cb(message, ...optionalParams)
+  private sendLog(message: string, cb: (message?: any) => void) {
+    cb(message)
+    this.logSender && this.logSender.send(message)
+  }
+
+  private invokeLog(level: LogLevel, message: string) {
+    if(this.isLoglevelPass(level)) {
+      this.sendLog(message, this.consoleMapper.get(this.logLevel))
+    }
   }
   
   /**
@@ -41,8 +51,8 @@ class Logger implements ILogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  debug(message: string, ...optionalParams: any[]) {  
-    this.sendLog(message, console.debug, ...optionalParams)
+  debug(message: string) {  
+    this.invokeLog(LogLevel.debug, message)
   }
 
   /**
@@ -52,8 +62,8 @@ class Logger implements ILogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  info(message: string, ...optionalParams: any[]){
-    this.sendLog(message, console.info, ...optionalParams)
+  info(message: string){
+    this.invokeLog(LogLevel.info, message)
   }
 
   /**
@@ -63,8 +73,8 @@ class Logger implements ILogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  error(message: string, ...optionalParams: any[]){
-    this.sendLog(message, console.error, ...optionalParams)
+  error(message: string){
+    this.invokeLog(LogLevel.error, message)
   }
 
   /**
@@ -74,8 +84,8 @@ class Logger implements ILogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  log(message: string, ...optionalParams: any[]){
-    this.sendLog(message, console.log, ...optionalParams)
+  log(message: string){
+    this.invokeLog(LogLevel.info, message)
   }
 }
 

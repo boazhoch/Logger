@@ -6,15 +6,28 @@
 <body>
 
 <h1>Example</h1>
-<button onclick="window.logger.log`hello`">Hello world</button>
-<button onclick="window.logger.log`hello ${{name:'Yoni'}}`">Hello Yoni</button>
+<button onclick="window.logger.debug`hello`">Hello world</button>
+<button onclick="window.logger.debug`hello ${{name:'Yoni'}}`">Hello Yoni</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.6/dayjs.min.js" integrity="sha512-C2m821NxMpJ4Df47O4P/17VPqt0yiK10UmGl59/e5ynRRYiCSBvy0KHJjhp2XIjUJreuR+y3SIhVyiVilhCmcQ==" crossorigin="anonymous"></script>
 <script type="module">
   import c from './index.esm.js';
 
-  logger = c();
+  logger = c({
+    sendMessageOptions: {headers: {contentType: "application/json"}, urlEndpoint: "/log"},
+    logFormmaterOptions: {
+        prefix: () => `${dayjs().format('YYYY MM-DD HH:mm:ss A')}: `,
+        suffix: () => `Tenant name`
+    }
+  });
 
   logger.debug`Hey im your logger 👾 🤖`
 
   logger.error`Hey! watch out!`
+
+  const a = {
+    name: "boaz"
+  }
+
+  logger.log`My first ${a}`
 </script>
 </body>

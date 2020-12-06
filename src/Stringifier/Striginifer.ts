@@ -5,7 +5,7 @@ class JsonStriginifer implements IStrigify {
     if (!value) {
       return ''
     }
-    const result = JSON.stringify(value)
+    const result = JSON.stringify(value, null ,1)
     if(!result) {
       console.warn("couldn't stringify: ", value)
       return ''
