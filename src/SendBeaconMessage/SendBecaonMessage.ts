@@ -1,17 +1,13 @@
 import { ISendMessageOptions } from '@/SendMessageOptions/types'
-import { ISendMessage } from '@/SendMessage/types'
-import SendMessage from '@/SendMessage/SendMessage'
+import { ISendMessageExecuter } from '@/SendMessage/types'
 
-class SendBeaconMessage extends SendMessage implements ISendMessage {
+
+class SendBeaconMessage implements ISendMessageExecuter {
   static type = 'beacon'
-  
-  constructor(opts: ISendMessageOptions) {
-    super(opts)
-  }
 
-  send(message: string) {
-    const data = new Blob([this.wrapLog(message)], {type: this.opts.headers.contentType})
-    navigator.sendBeacon(this.opts.urlEndpoint, data)
+  send(message: string, opts: ISendMessageOptions) {
+    const data = new Blob([message], {type: opts.headers.contentType})
+    navigator.sendBeacon(opts.urlEndpoint, data)
   }
 }
 

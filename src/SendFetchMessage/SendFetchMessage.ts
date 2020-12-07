@@ -1,24 +1,22 @@
 import { ISendMessageOptions } from '@/SendMessageOptions/types'
-import { ISendMessage } from '@/SendMessage/types'
-import SendMessage from '@/SendMessage/SendMessage'
+import { ISendMessageExecuter } from '@/SendMessage/types'
 
-class SendFetchMessage extends SendMessage implements ISendMessage {
+class SendFetchMessage implements ISendMessageExecuter {
   static type = 'fetch'
 
-  constructor(opts: ISendMessageOptions, private fetchRequestOptions?: RequestInit) {
-    super(opts)
+  constructor(private fetchRequestOptions?: RequestInit) {
   }
 
-  send(m: string){
-    return fetch(this.opts.urlEndpoint, { 
+  send(message: string, opts: ISendMessageOptions){
+    return fetch(opts.urlEndpoint, { 
       method: 'POST', 
       credentials: 'include', 
       cache: 'no-cache', 
       mode: 'cors', 
       headers: {
-        'Content-Type': this.opts.headers.contentType,
+        'Content-Type': opts.headers.contentType,
       },
-      body: this.wrapLog(m),
+      body: message,
       ...this.fetchRequestOptions,
     })
   }
