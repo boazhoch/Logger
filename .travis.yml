@@ -1,13 +1,11 @@
-sudo: false
-
 language: node_js
-node_js:
-  - node
-cache: yarn
 
-install:
-  - yarn install
+node_js:
+- node
+- 'lts/*'
+
+cache: npm
     
 script:
-  - yarn test
-  - yarn build
+  - npm run test
+  - npm run build
