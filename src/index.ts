@@ -9,7 +9,8 @@ import { ILogger } from './Logger/types'
 import TaggedLogger from './TaggedLogger/TaggedLogger'
 import SendMessageFactory from './SendMessageFactory/SendMessageFactory'
 import { IStrigify } from './Stringifier/types'
-import LogFormatter, { logFormatterOptionsFcatory } from './LogFormatter/LogFomatter'
+import LogFormatter from './LogFormatter/LogFomatter'
+import logFormatterOptionsFcatory from './logFormatterFactory/logFormatterFactory'
 
 interface MyNamespacedWindow extends Window {
   logger: ILogger
