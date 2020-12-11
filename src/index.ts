@@ -46,5 +46,7 @@ export default (
   
   window.logger = taggedLogger
 
+  console.log('hey')
+
   return taggedLogger
 }
