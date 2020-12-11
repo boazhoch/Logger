@@ -8,7 +8,7 @@ export enum FormatType {
 }
 
 export type ILogFormatterConfig = {
-  [key in FormatType]: ILogFormatter
+  [key in FormatType]?: ILogFormatter
 }
 
 export type ILogFormatteOptions = {
