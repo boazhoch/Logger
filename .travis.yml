@@ -1,17 +1,13 @@
 sudo: false
 
 language: node_js
-
 node_js:
   - node
-
-cache: 
-  yarn: true
-  directories:
-    - node_module
+cache: yarn
 
 install:
   - yarn install
     
 script:
   - yarn test
+  - yarn build
