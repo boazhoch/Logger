@@ -44,6 +44,7 @@
     "types:watch": "npm run types:check -- --watch"
   },
   "devDependencies": {
+    "@rollup/plugin-babel": "^5.2.2",
     "@rollup/plugin-commonjs": "^16.0.0",
     "@rollup/plugin-node-resolve": "^10.0.0",
     "@types/jest": "^26.0.15",
