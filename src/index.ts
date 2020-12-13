@@ -20,7 +20,7 @@ declare let window: MyNamespacedWindow
 
 let taggedLogger: ITaggedLogger
 
-export default (
+const loggerFactory = (
   {
     sendMessageOptions, 
     logSender = SendMessageFactory.create(sendMessageOptions), 
@@ -50,3 +50,5 @@ export default (
 
   return taggedLogger
 }
+
+export {loggerFactory}
