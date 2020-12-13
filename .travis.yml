@@ -6,4 +6,5 @@ node_js:
 cache: npm
     
 script:
+  - npm run test:coveralls
   - npm run build
