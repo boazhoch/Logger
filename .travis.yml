@@ -5,10 +5,10 @@ node_js:
 
 cache: npm
 
-env: 
-  global:
-    - COVERALLS_SERVICE_NAME=travis-ci 
-    - COVERALLS_REPO_TOKEN=iQAaot62FPVdvr2ZbLs69HIxfUi8YTTG2 && 
+# env: 
+#   global:
+#     - COVERALLS_SERVICE_NAME=travis-ci 
+#     - COVERALLS_REPO_TOKEN=iQAaot62FPVdvr2ZbLs69HIxfUi8YTTG2 && 
     
 script:
   - npm run build
