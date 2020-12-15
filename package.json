@@ -38,7 +38,7 @@
     "start": "rollup -c --environment BUILD:development -w",
     "pretest": "npm run lint",
     "test": "jest",
-    "test:coveralls": "npm run test -- --coverage & coveralls < coverage/lcov.info",
+    "test:coveralls": "npm run test -- --coverage && coveralls < coverage/lcov.info",
     "test:watch": "npm run test -- --watch --notify",
     "types:check": "tsc --noEmit",
     "types:watch": "npm run types:check -- --watch"
