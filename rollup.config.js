@@ -53,10 +53,6 @@ export default [
       ts(),
       resolve({ extensions }),
       commonjs(),
-      babel({
-        extensions,
-        include: ['src/**/*'],
-      }),
       terser(),
       ...devPlugins(),
     ],
