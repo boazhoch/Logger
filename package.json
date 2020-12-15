@@ -27,7 +27,7 @@
     "types"
   ],
   "scripts": {
-    "prebuild": "npm run test:coveralls & npm run clean",
+    "prebuild": "npm run test:coveralls && npm run clean",
     "build": "npm run build:js",
     "build:js": "rollup -c --environment BUILD:production",
     "clean": "rimraf dist",
