@@ -6,7 +6,5 @@ node_js:
 cache: npm
     
 script:
-  - export COVERALLS_SERVICE_NAME=travis-ci
-  - export COVERALLS_REPO_TOKEN=iQAaot62FPVdvr2ZbLs69HIxfUi8YTTG2
   - npm run test:coveralls
   - npm run build
