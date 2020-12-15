@@ -11,5 +11,4 @@ env:
     - COVERALLS_REPO_TOKEN=iQAaot62FPVdvr2ZbLs69HIxfUi8YTTG2 && 
     
 script:
-  - npm run test:coveralls
   - npm run build
