@@ -20,7 +20,7 @@ const devPlugins = () => isDev ?
       template: 'index.html',
       target: 'index.html',
     }),
-    dev({dirs: ['dist'], port: 8000, extend(app, modules) { 
+    dev({dirs: ['dist'], port: 8081, extend(app, modules) { 
       app.use(koaBody({ multipart: true }))
       app.use(modules.router.post('/log', (ctx, next) => {
         console.log(ctx.request.body)
