@@ -20,3 +20,17 @@ test('Set log level', () => {
   contextLogger.setLogLevel(logLevel)
   expect(contextLogger.getLogLevel()).toBe(logLevel)
 })
+
+test('log level trace to not pass log level error', () => {
+  class CheckLogger extends ContextLogger {
+    checkLogLevel(logLevel: LogLevel) {
+      return this.isLoglevelPass(logLevel)
+    }
+  }
+  
+  const logger = new CheckLogger()
+
+  logger.setLogLevel(LogLevel.error)
+
+  expect(logger.checkLogLevel(LogLevel.trace)).toBeFalsy()
+})

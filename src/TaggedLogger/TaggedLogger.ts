@@ -2,18 +2,23 @@ import { ITaggedLogger } from './types'
 import { ITemplateString } from '@/TemplateString/types'
 import { ILogger } from '@/Logger/types'
 import { ILogFormatter } from '@/LogFormatter/types'
+import { IContextLogger, LogLevel } from '@/ContextLogger/types'
 
-class TaggedLogger implements ITaggedLogger {
+class TaggedLogger implements ITaggedLogger, IContextLogger {
   constructor(private tpl: ITemplateString, private _logger: ILogger, private logFormatter?: ILogFormatter){
   }
 
-  private isTemplateStringsArray(arg: any): arg is TemplateStringsArray {
-    return Array.isArray(arg) 
+  private getMessage<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {
+    const message = this.tpl.toString(strings, ...values)
+    return this.logFormatter ? this.logFormatter?.format(message) : message
   }
 
-  private getMessage<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {
-    const message = this.isTemplateStringsArray(strings) ? this.tpl.toString(strings, ...values): strings as string
-    return this.logFormatter ? this.logFormatter?.format(message) : message
+  setLogLevel(logLevel: LogLevel) {
+    this._logger.setLogLevel(logLevel)
+  }
+
+  getLogLevel() {
+    return this._logger.getLogLevel()
   }
 
   /**

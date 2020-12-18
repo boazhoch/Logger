@@ -1,16 +1,27 @@
-import { IStrigify } from './types'
+import { IStrigify, StrinfigyValue } from './types'
 
 class JsonStriginifer implements IStrigify {
-  strifigy(value: any) {
+  
+  private onError(warnMessage: string) {
+    console.warn(warnMessage)
+    return ''
+  }
+
+  strinfigy(value?: StrinfigyValue) {
     if (!value) {
-      return ''
+      return this.onError('No value was passe to strinfigy, return \'\'')
     }
-    const result = JSON.stringify(value, null ,1)
-    if(!result) {
-      console.warn("couldn't stringify: ", value)
-      return ''
+
+    if(typeof value === 'string') {
+      return value
     }
-    return result
+    
+    try {
+      const result = JSON.stringify(value)
+      return result
+    } catch(e) {
+      return this.onError(`couldn't stringify: ${value}`)
+    }
   }
 }
 

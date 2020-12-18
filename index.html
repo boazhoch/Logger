@@ -12,7 +12,7 @@
 <script type="module">
   import c from './index.esm.js';
 
-  logger = c({
+  const logger = c({
     sendMessageOptions: {headers: {contentType: "application/json"}, urlEndpoint: "/log"},
     logFormmaterOptions: {
         prefix: () => `${dayjs().format('YYYY MM-DD HH:mm:ss A')}: `,
@@ -20,14 +20,22 @@
     }
   });
 
-  logger.debug`Hey im your logger 👾 🤖`
+  const a = "My simple message"
 
-  logger.error`Hey! watch out!`
+  const b = "still simple"
 
-  const a = {
-    name: "boaz"
-  }
+  const objA = {firstName: "boaz", lastName: "hoch"}
 
-  logger.log`My first ${a}`
+  const objB = {firstName: "nokky", lastName: "goren"}
+
+  logger.debug`this is a simple test message with: ${a} and with: ${b}`
+
+  logger.info`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`
+
+  logger.info(`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`)
+
+  logger.info(`this is more advance`)
+
+  logger.info(`this is more advance`, a, b, objA, objB)
 </script>
 </body>
