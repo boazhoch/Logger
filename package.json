@@ -21,15 +21,15 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
-  "types": "types/index.cjs.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "scripts": {
     "prebuild": "npm run test:coveralls && npm run clean",
     "build": "npm run build:js",
     "build:js": "rollup -c --environment BUILD:production",
+    "watch:js": "rollup -w -c --environment BUILD:production",
     "clean": "rimraf dist",
     "lint": "eslint src/**/* --fix",
     "prerelease": "npm run build",
@@ -64,5 +64,6 @@
     "rollup-plugin-typescript": "^1.0.1",
     "ts-jest": "^26.4.3",
     "typescript": "^4.0.5"
-  }
+  },
+  "dependencies": {}
 }

@@ -6,7 +6,7 @@
     "allowSyntheticDefaultImports": true,
     "noErrorTruncation": false,
     "allowJs": true,
-    "target": "ES5",
+    "target": "ES2020",
     "moduleResolution": "node",
     "module": "ESNext",
     "jsx": "react",

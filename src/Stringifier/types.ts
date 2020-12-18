@@ -1,3 +1,6 @@
 export interface IStrigify {
-  strifigy(value: any): string
+  strinfigy(value?: StrinfigyValue): string
 }
+
+export type StrinfigyValue = string | Record<string | number, any>;
+// export type StrinfigyValue = unknown;
