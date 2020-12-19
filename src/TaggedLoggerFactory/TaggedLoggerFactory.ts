@@ -31,7 +31,9 @@ export default (params?: LoggerFactoryParams): ITaggedLogger  => {
 
   const logger = new Logger(logSender)
 
-  taggedLogger = new TaggedLogger(new TemplateString(params?.stringifier || new JsonStriginifer()), logger,   params?.logFormmaterOptions && new LogFormatter(logFormatterOptionsFcatory(params.logFormmaterOptions)))
+  const logFormatters = params?.logFormmaterOptions ? logFormatterOptionsFcatory(params?.logFormmaterOptions) : undefined
+
+  taggedLogger = new TaggedLogger(new TemplateString(params?.stringifier || new JsonStriginifer()), logger, new LogFormatter(logFormatters))
 
   return taggedLogger
 }

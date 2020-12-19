@@ -16,7 +16,7 @@
     sendMessageOptions: {headers: {contentType: "application/json"}, urlEndpoint: "/log"},
     logFormmaterOptions: {
         prefix: () => `${dayjs().format('YYYY MM-DD HH:mm:ss A')}: `,
-        suffix: () => `Tenant name`
+        suffix: () => ` Suffix format`
     }
   });
 
@@ -32,9 +32,9 @@
 
   logger.info`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`
 
-  logger.info(`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`)
+  logger.error`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`
 
-  logger.info(`this is more advance`)
+  logger.log(`this is more advance`)
 
   logger.info(`this is more advance`, a, b, objA, objB)
 </script>

@@ -8,6 +8,7 @@
     "rollup",
     "typescript"
   ],
+  "type": "module",
   "homepage": "https://github.com/boazhoch/Logger",
   "bugs": {
     "url": "https://github.com/boazhoch/Loggerissues"
@@ -19,9 +20,10 @@
   "license": "MIT",
   "author": "Boaz hoch boazmier@gmail.com",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "browser": "dist/index.umd.js",
   "types": "dist/index.d.ts",
+  "exports": "dist/index.mjs",
   "files": [
     "dist"
   ],
