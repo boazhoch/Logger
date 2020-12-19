@@ -1,15 +1,15 @@
-import LogFormatterPrefixer from './LogFormatterPrefixer'
+import LogFormatterPrefixer from "./LogFormatterPrefixer";
 
-const prefixString = 'prefix'
+const prefixString = "prefix";
 
-const prefixFn = jest.fn(() => prefixString)
+const prefixFn = jest.fn(() => prefixString);
 
-test('LogFormatterPrefixer format', () => {
-  const formatter = new  LogFormatterPrefixer(prefixFn)
+test("LogFormatterPrefixer format", () => {
+  const formatter = new LogFormatterPrefixer(prefixFn);
 
-  expect(formatter).toBeInstanceOf(LogFormatterPrefixer)
+  expect(formatter).toBeInstanceOf(LogFormatterPrefixer);
 
-  formatter.format('message')
+  formatter.format("message");
 
-  expect(prefixFn).toBeCalledTimes(1)
-})
+  expect(prefixFn).toBeCalledTimes(1);
+});

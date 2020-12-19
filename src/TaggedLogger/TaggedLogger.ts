@@ -1,24 +1,23 @@
-import { ITaggedLogger } from './types'
-import { ITemplateString } from '@/TemplateString/types'
-import { ILogger } from '@/Logger/types'
-import { ILogFormatter } from '@/LogFormatter/types'
-import { IContextLogger, LogLevel } from '@/ContextLogger/types'
+import { ITaggedLogger } from "./types";
+import { ITemplateString } from "@/TemplateString/types";
+import { ILogger } from "@/Logger/types";
+import { ILogFormatter } from "@/LogFormatter/types";
+import { IContextLogger, LogLevel } from "@/ContextLogger/types";
 
 class TaggedLogger implements ITaggedLogger, IContextLogger {
-  constructor(private tpl: ITemplateString, private _logger: ILogger, private logFormatter: ILogFormatter){
-  }
+  constructor(private tpl: ITemplateString, private _logger: ILogger, private logFormatter: ILogFormatter) {}
 
   private getMessage<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {
-    const message = this.tpl.toString(strings, ...values)
-    return this.logFormatter.format(message)
+    const message = this.tpl.toString(strings, ...values);
+    return this.logFormatter.format(message);
   }
 
   setLogLevel(logLevel: LogLevel) {
-    this._logger.setLogLevel(logLevel)
+    this._logger.setLogLevel(logLevel);
   }
 
   getLogLevel() {
-    return this._logger.getLogLevel()
+    return this._logger.getLogLevel();
   }
 
   /**
@@ -29,8 +28,8 @@ class TaggedLogger implements ITaggedLogger, IContextLogger {
    * @param {...any[]} values
    * @memberof TaggedLogger
    */
-  debug<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {  
-    this._logger.debug(this.getMessage(strings, ...values))
+  debug<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {
+    this._logger.debug(this.getMessage(strings, ...values));
   }
 
   /**
@@ -40,8 +39,8 @@ class TaggedLogger implements ITaggedLogger, IContextLogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  info<T extends TemplateStringsArray | string>(strings: T, ...values: any[]){
-    this._logger.info(this.getMessage(strings, ...values))
+  info<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {
+    this._logger.info(this.getMessage(strings, ...values));
   }
 
   /**
@@ -51,8 +50,8 @@ class TaggedLogger implements ITaggedLogger, IContextLogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  error<T extends TemplateStringsArray | string>(strings: T, ...values: any[]){
-    this._logger.error(this.getMessage(strings, ...values))
+  error<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {
+    this._logger.error(this.getMessage(strings, ...values));
   }
 
   /**
@@ -62,9 +61,9 @@ class TaggedLogger implements ITaggedLogger, IContextLogger {
    * @param {...any[]} values
    * @memberof Logger
    */
-  log<T extends TemplateStringsArray | string>(strings: T, ...values: any[]){
-    this._logger.log(this.getMessage(strings, ...values))
+  log<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {
+    this._logger.log(this.getMessage(strings, ...values));
   }
 }
 
-export default TaggedLogger
+export default TaggedLogger;

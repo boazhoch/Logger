@@ -1,11 +1,11 @@
-import { ILogFormatter } from '@/LogFormatter/types'
+import { ILogFormatter } from "@/LogFormatter/types";
 
 class LogFormatterPrefixer implements ILogFormatter {
-  constructor(private prefix:() => string) {}
+  constructor(private prefix: () => string) {}
 
-  format(message: string){
-    return `${this.prefix()}${message}`
+  format(message: string) {
+    return `${this.prefix()}${message}`;
   }
 }
 
-export default LogFormatterPrefixer
+export default LogFormatterPrefixer;
