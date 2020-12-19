@@ -8,7 +8,6 @@
     "rollup",
     "typescript"
   ],
-  "type": "module",
   "homepage": "https://github.com/boazhoch/Logger",
   "bugs": {
     "url": "https://github.com/boazhoch/Loggerissues"
