@@ -21,6 +21,6 @@ module.exports = {
   plugins: ["@typescript-eslint", "simple-import-sort"],
   rules: {
     "max-len": ["error", { code: 160, ignoreUrls: true }],
-    "prettier/prettier": ["error", { singleQuote: false, arrowParens: "always", printWidth: 120 }],
+    "prettier/prettier": ["error", { singleQuote: false, arrowParens: "always", printWidth: 160 }],
   },
 };

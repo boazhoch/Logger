@@ -9,9 +9,7 @@ class SendMessageFactory {
   static isSupportingSendBeacon = Boolean(navigator.sendBeacon);
 
   static create(opts: ISendMessageOptions = new SendMessageOptions(), fetchRequestOptions?: RequestInit): ISendMessage {
-    const sendMessageExecuter = this.isSupportingSendBeacon
-      ? new SendBeaconMessage()
-      : new SendFetchMessage(fetchRequestOptions);
+    const sendMessageExecuter = this.isSupportingSendBeacon ? new SendBeaconMessage() : new SendFetchMessage(fetchRequestOptions);
     return new SendMessage(opts, sendMessageExecuter);
   }
 }
