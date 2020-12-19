@@ -5,12 +5,12 @@ import { ILogFormatter } from '@/LogFormatter/types'
 import { IContextLogger, LogLevel } from '@/ContextLogger/types'
 
 class TaggedLogger implements ITaggedLogger, IContextLogger {
-  constructor(private tpl: ITemplateString, private _logger: ILogger, private logFormatter?: ILogFormatter){
+  constructor(private tpl: ITemplateString, private _logger: ILogger, private logFormatter: ILogFormatter){
   }
 
   private getMessage<T extends TemplateStringsArray | string>(strings: T, ...values: any[]) {
     const message = this.tpl.toString(strings, ...values)
-    return this.logFormatter ? this.logFormatter?.format(message) : message
+    return this.logFormatter.format(message)
   }
 
   setLogLevel(logLevel: LogLevel) {

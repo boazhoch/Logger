@@ -1,7 +1,7 @@
 import { ILogFormatter, ILogFormatterConfig, FormatType } from './types'
 
 class LogFormatter implements ILogFormatter {
-  constructor(private logFormmaterConfig: ILogFormatterConfig) {
+  constructor(private logFormmaterConfig?: ILogFormatterConfig) {
   }
 
   format(message:string)  {

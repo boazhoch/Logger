@@ -40,7 +40,7 @@ class Logger extends ContextLogger implements ILogger {
 
   private invokeLog(level: LogLevel, message: string) {
     if(this.isLoglevelPass(level)) {
-      this.sendLog(message, this.consoleMapper.get(this.logLevel))
+      this.sendLog(message, this.consoleMapper.get(level))
     }
   }
   

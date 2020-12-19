@@ -19,9 +19,10 @@
   "license": "MIT",
   "author": "Boaz hoch boazmier@gmail.com",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "browser": "dist/index.umd.js",
   "types": "dist/index.d.ts",
+  "exports": "dist/index.mjs",
   "files": [
     "dist"
   ],
