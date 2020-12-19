@@ -1,10 +1,9 @@
-import { ISendMessageOptions } from '@/SendMessageOptions/types'
+import { ISendMessageOptions } from "@/SendMessageOptions/types";
 
 export interface ISendMessageExecuter {
-  send(messsage: string, opts: ISendMessageOptions): void
+  send(messsage: string, opts: ISendMessageOptions): void;
 }
 
 export interface ISendMessage {
-  send(messsage: string): void
+  send(messsage: string): void;
 }
-

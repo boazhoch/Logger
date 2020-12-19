@@ -1,7 +1,7 @@
-import { StrinfigyValue } from '@/Stringifier/types'
+import { StrinfigyValue } from "@/Stringifier/types";
 
 export interface ITemplateString {
-  toString: TemplateStringFn<string>
+  toString: TemplateStringFn<string>;
 }
 
-export type TemplateStringFn<T> = (strings: TemplateStringsArray | string, ...values: StrinfigyValue[]) => T
+export type TemplateStringFn<T> = (strings: TemplateStringsArray | string, ...values: StrinfigyValue[]) => T;

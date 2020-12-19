@@ -1,10 +1,10 @@
-import { ISendMessageOptions } from './types'
+import { ISendMessageOptions } from "./types";
 
 class SendMessageOptions implements ISendMessageOptions {
-  public urlEndpoint = '/logs'
+  public urlEndpoint = "/logs";
   public headers = {
-    contentType: 'text/plain',
-  }
+    contentType: "text/plain",
+  };
 }
 
-export default SendMessageOptions
+export default SendMessageOptions;

@@ -1,6 +1,6 @@
 export interface IContextLogger {
-  setLogLevel(logLevel: LogLevel): void
-  getLogLevel(): LogLevel
+  setLogLevel(logLevel: LogLevel): void;
+  getLogLevel(): LogLevel;
 }
 
 export enum LogLevel {
@@ -11,5 +11,5 @@ export enum LogLevel {
   timeEnd,
   warn,
   error,
-  off
+  off,
 }
