@@ -25,16 +25,13 @@ Just a javascript logger
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -64,13 +61,12 @@ Support of ESM and cjs, just run `npm install -S logger` to install.
 ## Usage
 
 ```typescript
-  import LoggerFactory from "logger"
+import LoggerFactory from "logger"
 
-  const logger = LoggerFactory(); // You can pass options to logger, once you initilize logger it will get the same instance back ( Logger is singleton ).
+const logger = LoggerFactory(); // You can pass options to logger, once you initilize logger it will get the same instance back ( Logger is singleton ).
+const person = { firstName: "Ploni", lastName: "Almoni" }
   
-  const person = { firstName: "Ploni", lastName: "Almoni" }
-  
-  logger.debug`Hey ${person}` // output: Hey { firstName: "Ploni", lastName: "Almoni" }
+logger.debug`Hey ${person}` // output: Hey { firstName: "Ploni", lastName: "Almoni" }
 ```
 
 <!-- CONTRIBUTING -->
