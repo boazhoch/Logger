@@ -44,7 +44,7 @@
     "types:check": "tsc --noEmit",
     "types:watch": "npm run types:check -- --watch",
     "doc": "typedoc --out docs src",
-    "deply:pages": "gh-pages -d docs"
+    "deploy:pages": "gh-pages -d docs"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
