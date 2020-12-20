@@ -63,7 +63,7 @@ Support of ESM and cjs, just run `npm install -S logger` to install.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-`
+```typescript
   import LoggerFactory from "logger"
 
   const logger = LoggerFactory(); // You can pass options to logger, once you initilize logger it will get the same instance back ( Logger is singleton ).
@@ -71,7 +71,7 @@ Support of ESM and cjs, just run `npm install -S logger` to install.
   const person = { firstName: "Ploni", lastName: "Almoni" }
   
   logger.debug`Hey ${person}` // output: Hey { firstName: "Ploni", lastName: "Almoni" }
-`
+```
 
 <!-- CONTRIBUTING -->
 ## Contributing
