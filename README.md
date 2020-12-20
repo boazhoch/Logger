@@ -7,7 +7,7 @@ Just a javascript logger
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  ![alt text](https://github.com/boazhoch/logger/blob/main/logo.png?raw=true)
+  <img src="/logo.png" alt="Logo" width="80" height="80">
 </p>
 
 <!-- TABLE OF CONTENTS -->
