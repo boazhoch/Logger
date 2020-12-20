@@ -42,7 +42,8 @@
     "test:coveralls": "npm run test -- --coverage && coveralls < coverage/lcov.info",
     "test:watch": "npm run test -- --watch --notify",
     "types:check": "tsc --noEmit",
-    "types:watch": "npm run types:check -- --watch"
+    "types:watch": "npm run types:check -- --watch",
+    "doc": "typedoc --out docs src"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -69,6 +70,7 @@
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript": "^1.0.1",
     "ts-jest": "^26.4.3",
+    "typedoc": "^0.19.2",
     "typescript": "^4.0.5"
   },
   "dependencies": {}
