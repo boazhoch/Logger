@@ -20,6 +20,9 @@
     }
   });
 
+  //@ts-ignore
+  window.logger = logger;
+
   const a = "My simple message"
 
   const b = "still simple"
@@ -36,6 +39,6 @@
 
   logger.log(`this is more advance`)
 
-  logger.info(`this is more advance`, a, b, objA, objB)
+  logger.info(`this is more advance`, a, b, objA, objB) 
 </script>
 </body>
