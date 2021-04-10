@@ -1,0 +1,5 @@
+{
+    "entryPoints": ["packages"],
+    "out": "docs",
+    "exclude": ["dist/", "**/*/dist/*"]
+  }
