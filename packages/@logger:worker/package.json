@@ -30,7 +30,6 @@
     "url": "https://github.com/boazhoch/Logger/issues"
   },
   "dependencies": {
-    "@logger/batch": "^0.0.0",
     "@logger/tagged": "^0.0.0",
     "comlink": "^4.3.0"
   },
