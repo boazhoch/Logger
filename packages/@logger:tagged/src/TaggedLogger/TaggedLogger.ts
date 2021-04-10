@@ -1,4 +1,4 @@
-import { ILogFormatter } from "@logger/formatter";
+import { ILogFormatter } from "../../../@logger/formatter/dist";
 import { ITaggedLogger } from "./types";
 import { ITemplateString } from "../../../stringify/dist";
 import { ILogger } from "../Logger/types";

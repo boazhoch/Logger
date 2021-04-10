@@ -2,7 +2,7 @@ import { SendMessageFactory, ISendMessageOptions, ISendMessage } from "@logger/s
 import Logger from "../Logger/Logger";
 import TaggedLogger from "../TaggedLogger/TaggedLogger";
 import { ITaggedLogger } from "../TaggedLogger/types";
-import logFormatter, { ILogFormatteOptions } from "@logger/formatter";
+import logFormatter, { ILogFormatteOptions } from "../../../@logger/formatter/dist";
 import { IStrigify, TemplateString, Striginifer } from "@logger/stringify";
 
 let taggedLogger: ITaggedLogger | undefined = undefined;
