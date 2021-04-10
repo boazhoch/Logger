@@ -1,0 +1,39 @@
+{
+  "name": "@logger/worker",
+  "version": "0.0.0",
+  "description": "Now I’m the model of a modern major general / The venerated Virginian veteran whose men are all / Lining up, to put me up on a pedestal / Writin’ letters to relatives / Embellishin’ my elegance and eloquence / But the elephant is in the room / The truth is in ya face when ya hear the British cannons go / BOOM",
+  "keywords": [],
+  "author": "Boaz hoch <boaz@storm.black>",
+  "homepage": "https://boazhoch.github.io/Logger/tree/master/packages/worker#readme",
+  "license": "ISC",
+  "main": "dist/worker.js",
+  "directories": {
+    "lib": "dist",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boazhoch/Logger.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build:tsc": "rm -rf ./lib && tsc",
+    "build:dev": "rollup -c --environment BUILD:development",
+    "build:prod": "rollup -c --environment BUILD:production",
+    "b": "rollup -c --environment BUILD:development",
+    "c": "rollup -c --environment BUILD:production"
+  },
+  "bugs": {
+    "url": "https://github.com/boazhoch/Logger/issues"
+  },
+  "dependencies": {
+    "@logger/tagged": "^0.0.0",
+    "comlink": "^4.3.0"
+  },
+  "devDependencies": {
+    "rollup-plugin-web-worker-loader": "^1.6.1"
+  }
+}
