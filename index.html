@@ -30,6 +30,10 @@
 
   await workerLogger.debug("hey there");
 
+  var obj = {name: "abut"};
+
+  await workerLogger.debug`hey ${obj}`
+
   // //@ts-ignore
   // window.logger = logger;
 

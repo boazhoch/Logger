@@ -2,8 +2,9 @@ import { SendMessageFactory, ISendMessageOptions, ISendMessage } from "@logger/s
 import Logger from "../Logger/Logger";
 import TaggedLogger from "../TaggedLogger/TaggedLogger";
 import { ITaggedLogger } from "../TaggedLogger/types";
-import logFormatter, { ILogFormatteOptions } from "../../../@logger/formatter/dist";
+import logFormatter, { ILogFormatteOptions } from "@logger/formatter";
 import { IStrigify, TemplateString, Striginifer } from "@logger/stringify";
+import LoggerLogLevel, { logLevelMapper } from "../LogLevel/LogLevel";
 
 let taggedLogger: ITaggedLogger | undefined = undefined;
 
@@ -23,9 +24,9 @@ export default (params?: LoggerFactoryParams): ITaggedLogger => {
     return taggedLogger;
   }
 
-  const logger = new Logger(logSender);
+  const logger = new Logger(logSender, new LoggerLogLevel(logLevelMapper));
 
-  taggedLogger = new TaggedLogger(new TemplateString(params?.stringifier || new Striginifer()), logger, logFormatter(params?.logFormmaterOptions));
+  taggedLogger = new TaggedLogger(new TemplateString(params?.stringifier || new Striginifer()), logger, logFormatter(params?.logFormmaterOptions), {});
 
   return taggedLogger;
 };

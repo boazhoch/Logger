@@ -1,12 +1,13 @@
-import { ISendMessage } from "../../../sender/dist";
-import { IContextLogger, LogLevel } from "./types";
+import { ILoggerLogLevel, LogLevel } from "../LogLevel/LogLevel";
+import { IContextLogger } from "./types";
 
 class ContextLogger implements IContextLogger {
   protected consoleMapper = new Map<LogLevel, any>();
+  private loggerLogLevel: ILoggerLogLevel;
 
-  constructor(protected logSender?: ISendMessage, protected logLevel = LogLevel.debug) {
-    this.logSender = logSender;
+  constructor(protected logLevel = LogLevel.debug, loggerLogLevel: ILoggerLogLevel) {
     this.logLevel = logLevel;
+    this.loggerLogLevel = loggerLogLevel;
 
     for (const logMethod in console) {
       const logLevel = LogLevel[(logMethod as unknown) as LogLevel];
@@ -22,11 +23,14 @@ class ContextLogger implements IContextLogger {
     return logLevel >= this.logLevel;
   }
 
+  protected getLogLevelName(logLevel: LogLevel) {
+    return this.loggerLogLevel.getLogLevelName(logLevel);
+  }
+
   setLogLevel(level: LogLevel) {
     if (LogLevel[level]) {
       this.logLevel = level;
     }
-    return this;
   }
 
   getLogLevel() {
