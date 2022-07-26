@@ -2,12 +2,13 @@ import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import { terser } from "rollup-plugin-terser";
 import ts from "@wessberg/rollup-plugin-ts";
-import pkg from "./package.json";
+// import pkg from "./package.json";
 // import livereload from "rollup-plugin-livereload";
 // import dev from "rollup-plugin-dev";
 // import koaBody from "koa-body";
 // import htmlTemplate from "rollup-plugin-generate-html-template";
 import process from "process";
+import webWorkerLoader from "rollup-plugin-web-worker-loader";
 
 const isDev = process.env.BUILD === "development";
 
@@ -38,26 +39,19 @@ const devPlugins = () =>
     : [terser()];
 
 const config = [
+  // {
+  //   input: "src/index.ts",
+  //   output: {
+  //     sourcemap: isDev,
+  //     file: `${isDev ? "dev/" : ""}${pkg.main}`,
+  //     format: "cjs",
+  //   },
+  //   plugins: [ts(), resolve({ extensions }), commonjs(), webWorkerLoader(), ...devPlugins()],
+  // },
   {
-    input: "src/index.ts",
-    output: {
-      sourcemap: isDev,
-      file: `${isDev ? "dev/" : ""}${pkg.main}`,
-      format: "cjs",
-    },
-    plugins: [ts(), resolve({ extensions }), commonjs(), ...devPlugins()],
-  },
-  {
-    input: "src/index.ts",
-    output: [
-      {
-        dir: "dist",
-        format: "esm",
-        entryFileNames: "[name].mjs",
-        sourcemap: true,
-      },
-    ],
-    plugins: [resolve(), commonjs(), ts({ tsconfig: "./tsconfig.es6.json" }), ...devPlugins()],
+    input: ["./src/index.ts"],
+    output: [{ dir: "dist", format: "esm", entryFileNames: "[name].mjs", sourcemap: true }],
+    plugins: [resolve(), commonjs(), webWorkerLoader(/* { inline: false } */), ts({ tsconfig: "./tsconfig.es6.json" }), ...devPlugins()],
   },
 ];
 

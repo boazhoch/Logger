@@ -9,33 +9,48 @@
 <button onclick="window.logger.debug`hello`">Hello world</button>
 <button onclick="window.logger.debug`hello ${{name:'Yoni'}}`">Hello Yoni</button>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.6/dayjs.min.js" integrity="sha512-C2m821NxMpJ4Df47O4P/17VPqt0yiK10UmGl59/e5ynRRYiCSBvy0KHJjhp2XIjUJreuR+y3SIhVyiVilhCmcQ==" crossorigin="anonymous"></script>
+<script src="./packages/worker/dist/index.cjs.js"></script>
 <script type="module">
-  import c from './index.esm.js';
+  // import c from './packages/tagged/dist/index.mjs';
+  // import {BatchSendMessage} from './packages/batch/dist/index.mjs';
+  import w from './packages/@logger:worker/dist/index.mjs';
 
-  const logger = c({
-    sendMessageOptions: {headers: {contentType: "application/json"}, urlEndpoint: "/log"},
-    logFormmaterOptions: {
-        prefix: () => `${dayjs().format('YYYY MM-DD HH:mm:ss A')}: `,
-        suffix: () => ` Suffix format`
-    }
-  });
+  // const logger = c({
+  //   logSender: new BatchSendMessage(),
+  //   sendMessageOptions: {headers: {contentType: "application/json"}, urlEndpoint: "/log"},
+  //   logFormmaterOptions: {
+  //       prefix: () => `${dayjs().format('YYYY MM-DD HH:mm:ss A')}: `,
+  //       suffix: () => ` Suffix format`
+  //   }
+  // });
 
-  const a = "My simple message"
+  const workerLogger = w();
 
-  const b = "still simple"
+  window.logger = workerLogger;
 
-  const objA = {firstName: "boaz", lastName: "hoch"}
+  await workerLogger.debug("hey there");
 
-  const objB = {firstName: "nokky", lastName: "goren"}
+  // //@ts-ignore
+  // window.logger = logger;
 
-  logger.debug`this is a simple test message with: ${a} and with: ${b}`
+  // window.wrokerLogger = workerLogger;
 
-  logger.info`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`
+  // const a = "My simple message"
 
-  logger.error`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`
+  // const b = "still simple"
 
-  logger.log(`this is more advance`)
+  // const objA = {firstName: "boaz", lastName: "hoch"}
 
-  logger.info(`this is more advance`, a, b, objA, objB)
+  // const objB = {firstName: "nokky", lastName: "goren"}
+
+  // logger.debug`this is a simple test message with: ${a} and with: ${b}`
+
+  // logger.info`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`
+
+  // logger.error`this is more advance ${a} and with ${objA} and with ${b} and with ${objB}`
+
+  // logger.log(`this is more advance`)
+
+  // logger.info(`this is more advance`, a, b, objA, objB) 
 </script>
 </body>
